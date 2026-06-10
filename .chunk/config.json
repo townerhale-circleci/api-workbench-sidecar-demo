@@ -2,13 +2,28 @@
   "commands": [
     {
       "name": "e2e-runtime",
-      "command": "CI=1 npx playwright test --config tests/e2e/playwright.config.js tests/e2e/specs/runtime --reporter=list --retries=0 --workers=1",
+      "run": "CI=1 npx playwright test --config tests/e2e/playwright.config.js tests/e2e/specs/runtime --reporter=list --retries=0 --workers=1",
       "remote": true
     },
     {
       "name": "e2e-smoke",
-      "command": "CI=1 npx playwright test --config tests/e2e/playwright.config.js tests/e2e/specs/smoke --reporter=list --retries=0 --workers=1",
+      "run": "CI=1 npx playwright test --config tests/e2e/playwright.config.js tests/e2e/specs/smoke --reporter=list --retries=0 --workers=1",
       "remote": true
     }
-  ]
+  ],
+  "environment": {
+    "stack": "javascript",
+    "setup": [
+      {
+        "name": "install",
+        "command": "npm install"
+      },
+      {
+        "name": "browsers",
+        "command": "npx playwright install --with-deps chromium"
+      }
+    ],
+    "image": "cimg/node",
+    "image_version": "26.3.0"
+  }
 }
