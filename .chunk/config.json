@@ -11,6 +11,9 @@
       "remote": true
     }
   ],
+  "validation": {
+    "sidecarImage": "0965da14-17b5-4b31-92d5-ec4a7a32ebe0"
+  },
   "environment": {
     "stack": "javascript",
     "setup": [
