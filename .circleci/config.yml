@@ -1,0 +1,31 @@
+version: 2.1
+
+jobs:
+  e2e-tests:
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.49.0-noble
+    resource_class: large
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - npm-deps-{{ checksum "package.json" }}
+      - run:
+          name: Install dependencies
+          command: npm install
+      - save_cache:
+          key: npm-deps-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Run Playwright E2E tests
+          command: CI=1 npm run test:e2e
+      - store_test_results:
+          path: test-results/junit
+      - store_artifacts:
+          path: test-results
+
+workflows:
+  e2e:
+    jobs:
+      - e2e-tests

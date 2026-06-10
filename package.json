@@ -1,0 +1,15 @@
+{
+  "name": "api-workbench-sidecar-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "API Workbench - a small API client app used to demo Chunk Sidecar validation loops for Playwright E2E tests",
+  "scripts": {
+    "start": "node server.js",
+    "test:e2e": "playwright test --config tests/e2e/playwright.config.js",
+    "test:e2e:runtime": "playwright test --config tests/e2e/playwright.config.js tests/e2e/specs/runtime",
+    "test:e2e:smoke": "playwright test --config tests/e2e/playwright.config.js tests/e2e/specs/smoke"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
+}

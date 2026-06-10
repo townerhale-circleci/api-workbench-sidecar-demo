@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Workbench</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <!-- Splash loader: shown while the app "boots" (simulates Electron-style startup) -->
+  <div id="splash" data-testid="splash-loader">
+    <div class="spinner"></div>
+    <p>Loading API Workbench…</p>
+  </div>
+
+  <!-- Sign-in screen: rendered only after the splash loader finishes -->
+  <div id="sign-in-screen" data-testid="sign-in-screen" hidden>
+    <h1>API Workbench</h1>
+    <p class="subtitle">Sign in to access your workspaces</p>
+    <button data-testid="sign-in" id="sign-in-button">Sign In</button>
+  </div>
+
+  <!-- Workbench: rendered after sign-in -->
+  <div id="workbench" data-testid="workbench" hidden>
+    <header>
+      <span class="brand">API Workbench</span>
+      <span data-testid="workspace-name">Team Workspace</span>
+    </header>
+    <main>
+      <button data-testid="new-request-button">New</button>
+      <ul id="new-request-menu" data-testid="new-request-menu" hidden>
+        <li><button data-testid="new-http-request">HTTP Request</button></li>
+        <li><button data-testid="new-socket-io-request">Socket.IO Request</button></li>
+        <li><button data-testid="new-mqtt-request">MQTT Request</button></li>
+      </ul>
+      <section id="request-editor" data-testid="request-editor" hidden>
+        <h2 data-testid="request-editor-title"></h2>
+        <div data-testid="request-empty-state" class="empty-state">
+          <p data-testid="empty-state-message"></p>
+          <input data-testid="request-url-input" placeholder="Enter URL" />
+          <p data-testid="url-validation-message" class="validation" hidden></p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
